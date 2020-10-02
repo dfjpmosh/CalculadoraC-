@@ -13,6 +13,9 @@ namespace Calculadora
     public partial class Form1 : Form
     {
         Button boton;
+        double resultado, numero;
+        char opAnt, operador;
+        bool bNum1, bOp;
 
         public Form1()
         {
@@ -40,6 +43,12 @@ namespace Calculadora
 
         private void escribeNumero(string numero)
         {
+            if(bOp)
+            {
+                txtDisplay.Text = "";
+                bOp = false;
+            }
+
             if (numero != "0" || txtDisplay.Text.Length > 0)
             {
                 txtDisplay.Text += numero;
@@ -50,15 +59,24 @@ namespace Calculadora
         {
             boton = (Button)sender;
 
-            if (!txtDisplay.Text.Contains(".") && txtDisplay.Text.Length == 0)
+            if (!txtDisplay.Text.Contains("."))
             {
-                txtDisplay.Text = "0.";
-                //TODO: Validar con signo -
-            }
-            else
-            {
-                txtDisplay.Text += boton.Text;
-            }
+                if (txtDisplay.Text.Length == 0)
+                {
+                    txtDisplay.Text = "0.";
+                }
+                else
+                {
+                    if (txtDisplay.Text == "-")
+                    {
+                        txtDisplay.Text = "-0.";
+                    }
+                    else
+                    {
+                        txtDisplay.Text += boton.Text;
+                    }
+                }                
+            }            
         }
 
         private void btnMenos_Click(object sender, EventArgs e)
@@ -71,14 +89,19 @@ namespace Calculadora
             }
             else
             {
-                MessageBox.Show("Operación Resta");
-                //TODO: Validar que no intente operación o converción si sólo es el signo -
+                if(Double.TryParse(txtDisplay.Text, out numero))
+                {
+                    escribeCalcula(numero, '-');
+                }
             }
         }
 
         private void btnMas_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Operación Suma");
+            if (Double.TryParse(txtDisplay.Text, out numero))
+            {
+                escribeCalcula(numero, '+');
+            }
         }
 
         private void btnMultiplicacion_Click(object sender, EventArgs e)
@@ -109,6 +132,37 @@ namespace Calculadora
         private void btnLimpiarEntrada_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Borrar Entrada");
+        }
+
+        private void escribeCalcula(double numero, char op)
+        {
+            opAnt = operador;
+            operador = op;
+            
+            if (resultado == 0 || !bNum1)
+            {
+                resultado = numero;
+                bNum1 = true;
+            }
+            else
+            {
+                if (!bOp)
+                {
+                    switch (opAnt)
+                    {
+                        case '+':
+                            resultado += numero;
+                            break;
+                        case '-':
+                            resultado -= numero;
+                            break;
+                    }
+
+                    txtDisplay.Text = resultado.ToString();
+                }
+            }
+
+            bOp = true;
         }
     }
 }
