@@ -1,0 +1,10 @@
+D:\Users\dfjp\Documents\1_Proyectos\Proyectos C#\Calculadora\Calculadora\bin\Debug\Calculadora.exe.config
+D:\Users\dfjp\Documents\1_Proyectos\Proyectos C#\Calculadora\Calculadora\bin\Debug\Calculadora.exe
+D:\Users\dfjp\Documents\1_Proyectos\Proyectos C#\Calculadora\Calculadora\bin\Debug\Calculadora.pdb
+D:\Users\dfjp\Documents\1_Proyectos\Proyectos C#\Calculadora\Calculadora\obj\Debug\Calculadora.csprojAssemblyReference.cache
+D:\Users\dfjp\Documents\1_Proyectos\Proyectos C#\Calculadora\Calculadora\obj\Debug\Calculadora.Form1.resources
+D:\Users\dfjp\Documents\1_Proyectos\Proyectos C#\Calculadora\Calculadora\obj\Debug\Calculadora.Properties.Resources.resources
+D:\Users\dfjp\Documents\1_Proyectos\Proyectos C#\Calculadora\Calculadora\obj\Debug\Calculadora.csproj.GenerateResource.cache
+D:\Users\dfjp\Documents\1_Proyectos\Proyectos C#\Calculadora\Calculadora\obj\Debug\Calculadora.csproj.CoreCompileInputs.cache
+D:\Users\dfjp\Documents\1_Proyectos\Proyectos C#\Calculadora\Calculadora\obj\Debug\Calculadora.exe
+D:\Users\dfjp\Documents\1_Proyectos\Proyectos C#\Calculadora\Calculadora\obj\Debug\Calculadora.pdb
