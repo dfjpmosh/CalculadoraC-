@@ -12,6 +12,8 @@ namespace Calculadora
 {
     public partial class Form1 : Form
     {
+        Button boton;
+
         public Form1()
         {
             InitializeComponent();
@@ -19,7 +21,7 @@ namespace Calculadora
 
         private void btnClick(object sender, EventArgs e)
         {
-            Button boton = (Button)sender;
+            boton = (Button)sender;
 
             switch(boton.Text)
             {
@@ -31,25 +33,82 @@ namespace Calculadora
                 case "5":
                 case "6":
                 case "7":
-                case "9":
-                case "8":
-                    if (boton.Text != "0" || txtDisplay.Text.Length > 0)
-                    {
-                        txtDisplay.Text += boton.Text;
-                    }
-                    break;
-                case ".":
-                    if (!txtDisplay.Text.Contains("."))
-                        if (txtDisplay.Text.Length == 0)
-                        {
-                            txtDisplay.Text = "0.";
-                        }
-                        else
-                        {
-                            txtDisplay.Text += boton.Text;
-                        }
-                    break;
+                case "8": 
+                case "9": escribeNumero(boton.Text); break;
             }
+        }
+
+        private void escribeNumero(string numero)
+        {
+            if (numero != "0" || txtDisplay.Text.Length > 0)
+            {
+                txtDisplay.Text += numero;
+            }
+        }
+
+        private void btnPunto_Click(object sender, EventArgs e)
+        {
+            boton = (Button)sender;
+
+            if (!txtDisplay.Text.Contains(".") && txtDisplay.Text.Length == 0)
+            {
+                txtDisplay.Text = "0.";
+                //TODO: Validar con signo -
+            }
+            else
+            {
+                txtDisplay.Text += boton.Text;
+            }
+        }
+
+        private void btnMenos_Click(object sender, EventArgs e)
+        {
+            boton = (Button)sender;
+
+            if (!txtDisplay.Text.Contains("-") && txtDisplay.Text.Length == 0)
+            {
+                txtDisplay.Text += boton.Text;
+            }
+            else
+            {
+                MessageBox.Show("Operación Resta");
+                //TODO: Validar que no intente operación o converción si sólo es el signo -
+            }
+        }
+
+        private void btnMas_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Operación Suma");
+        }
+
+        private void btnMultiplicacion_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Operación Multiplicación");
+        }
+
+        private void btnDivision_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Operación División");
+        }
+
+        private void btnIgual_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Resultado");
+        }
+
+        private void btnRetroceder_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Retroceder");
+        }
+
+        private void btnLimpiarTodo_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Borrar Todo");            
+        }
+
+        private void btnLimpiarEntrada_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Borrar Entrada");
         }
     }
 }
