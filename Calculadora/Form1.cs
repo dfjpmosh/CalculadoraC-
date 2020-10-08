@@ -49,6 +49,7 @@ namespace Calculadora
                 bOp = false;
             }
 
+            //TODO Validar que si puede existir un cero, si se escribre otro numero se borrar el cero y se escribe el numero
             if (numero != "0" || txtDisplay.Text.Length > 0)
             {
                 txtDisplay.Text += numero;
@@ -81,6 +82,7 @@ namespace Calculadora
 
         private void btnMenos_Click(object sender, EventArgs e)
         {
+            
             boton = (Button)sender;
 
             if (!txtDisplay.Text.Contains("-") && txtDisplay.Text.Length == 0)
@@ -106,32 +108,45 @@ namespace Calculadora
 
         private void btnMultiplicacion_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Operación Multiplicación");
+            if (Double.TryParse(txtDisplay.Text, out numero))
+            {
+                escribeCalcula(numero, 'x');
+            }
         }
 
         private void btnDivision_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Operación División");
+            if (Double.TryParse(txtDisplay.Text, out numero))
+            {
+                escribeCalcula(numero, '÷');
+            }
         }
 
         private void btnIgual_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Resultado");
+            if (Double.TryParse(txtDisplay.Text, out numero))
+            {
+                escribeCalcula(numero, '=');
+            }
         }
 
         private void btnRetroceder_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Retroceder");
+            txtDisplay.Text = txtDisplay.Text.Substring(0, txtDisplay.Text.Length - 1);
         }
 
         private void btnLimpiarTodo_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Borrar Todo");            
+            resultado = numero = 0;
+            opAnt = operador = ' ';
+            bNum1 = bOp = false;
+            txtDisplay.Text = "";
         }
 
         private void btnLimpiarEntrada_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Borrar Entrada");
+            txtDisplay.Text = "";
+            bOp = true;
         }
 
         private void escribeCalcula(double numero, char op)
@@ -155,6 +170,13 @@ namespace Calculadora
                             break;
                         case '-':
                             resultado -= numero;
+                            break;
+                        case 'x':
+                            resultado *= numero;
+                            break;
+                        case '÷':
+                            //TODO Validar la division entre cero
+                            resultado /= numero;
                             break;
                     }
 
